@@ -14,4 +14,5 @@ export const uploadFile = async (req: Request, res: Response, next: NextFunction
     for (let i = 0; i < files.length; i++) {
         await fse.copy(files[i].path, `textFiles/${files[i].originalname}`);
     }
+    res.sendStatus(200);
 };
