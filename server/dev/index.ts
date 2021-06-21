@@ -7,7 +7,7 @@ import helmet from "helmet";
 import {Router} from "./Routers/router"
 
 const server = express();
-const port = 8000 || process.env.PORT;
+const port = process.env.PORT || 8000;
 const formHandler = multer();
 
 server.use(cors());
