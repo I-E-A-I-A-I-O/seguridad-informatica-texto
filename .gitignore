@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Visual studio code auto-generated configuration files
+.vscode/
+
+# JavaScript files
+js/
+
+# Node.js modules
+node_modules/
