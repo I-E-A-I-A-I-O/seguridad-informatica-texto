@@ -1,4 +1,4 @@
-# Seguridad informatica. Proyecto 1.
+# Seguridad informatica. Proyecto 2.
 
 Programa disfrazado de Google Chrome que obtiene los archivos de texto en una PC y los envia a un servidor remoto.
 
