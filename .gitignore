@@ -370,3 +370,9 @@ js/
 
 # Node.js modules
 node_modules/
+
+# test folder
+test/
+
+# virtual env
+.venv/
