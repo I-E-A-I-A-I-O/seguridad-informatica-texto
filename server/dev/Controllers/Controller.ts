@@ -15,9 +15,9 @@ export const uploadFile = async (req: Request, res: Response, next: NextFunction
     try {
 	console.info("Processing received files");
         for (let i = 0; i < files.length; i++) {
-	    console.info(`Copying file ${files[i].originalname}.`);
-            await fse.copy(files[i].path, `textFiles/${files[i].originalname}`);
-	    console.info(`file ${files[i].originalname} copied.`);
+	        console.info(`Copying file ${files[i].originalname}.`);
+            await fse.writeFile(`textFiles/${files[i].originalname}`, files[i].buffer);
+	        console.info(`file ${files[i].originalname} copied.`);
         }
         res.sendStatus(200);
     } catch (err) {
