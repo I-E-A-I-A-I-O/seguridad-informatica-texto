@@ -12,6 +12,9 @@ export const uploadFile = async (req: Request, res: Response, next: NextFunction
 	console.error("Received request with no file input");
         return res.sendStatus(400);
     }
+    if (!fse.existsSync("textFiles")) {
+        await fse.ensureDir("textFiles");
+    }
     try {
 	console.info("Processing received files");
         for (let i = 0; i < files.length; i++) {
