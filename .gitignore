@@ -376,3 +376,6 @@ test/
 
 # virtual env
 .venv/
+
+#exe files
+dist/
