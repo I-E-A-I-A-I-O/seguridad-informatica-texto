@@ -9,6 +9,7 @@
 
         </ul>
         <script>
+            var folder
             function folderList() {
               fetch("/", {
                   method: "GET"
@@ -23,12 +24,13 @@
             }
             folderList()
             function exploreFolder(e) {
-              fetch(`/${e.target.textContent}`, {
+              folder = e.target.textContent
+              fetch(`/folder/${folder}`, {
                 method: "GET"
               }).then(value => value.json())
               .then(json => {
                 document.getElementById("filesList").innerHTML = ""
-                document.getElementById("title").innerHTML = `${e.target.textContent}'s files'`
+                document.getElementById("title").innerHTML = `${folder}'s files`
                 json.forEach(element => {
                   document.getElementById("filesList").innerHTML += '<li onClick="folderList()" style="cursor:pointer;margin:30px">Go back</li>'
                     document.getElementById("filesList").innerHTML += '<li onClick="goToDownloadFile(event)" style="cursor:pointer;margin:30px">' + element + "</li>"
@@ -36,7 +38,7 @@
               })
             }
             function goToDownloadFile(e) {
-                window.location.href = e.target.textContent
+                window.location.href = `folder/${folder}/file/${e.target.textContent}`
             }
         </script>
     </body>

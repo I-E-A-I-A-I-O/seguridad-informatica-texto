@@ -30,8 +30,8 @@ export const listOfFiles = async (req: Request, res: Response, next: NextFunctio
 };
 
 export const getTextFile = async (req: Request, res: Response, next: NextFunction) => {
-    const {filename} = req.params;
-    const path = `textFiles/${filename}`
+    const {folder, filename} = req.params;
+    const path = `textFiles/${folder}/${filename}`
     fse.stat(path, (err, stat) => {
         if (err === null) {
             res.download(path);
@@ -44,3 +44,10 @@ export const getTextFile = async (req: Request, res: Response, next: NextFunctio
         }
     })
 };
+
+export const getFolderContent = async (req: Request, res: Response, next: NextFunction) => {
+    const {folder} = req.params
+    const path = `textFiles/${folder}`
+    const files = await fse.readdir(path);
+    res.status(200).send(files);
+}
