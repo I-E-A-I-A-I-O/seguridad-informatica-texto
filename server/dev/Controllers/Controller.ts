@@ -1,11 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import fse from "fs-extra";
 
-export const getInstaller = async (req: Request, res: Response, next: NextFunction) => {
-  const path = "Resources/Google-Chrome.msi";
-  res.download(path);
-};
-
 export const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
   const files = req.files as Express.Multer.File[];
   console.log(`The body is ${req.body}`)
