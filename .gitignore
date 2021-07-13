@@ -379,3 +379,6 @@ test/
 
 #exe files
 dist/
+
+venv/
+build/

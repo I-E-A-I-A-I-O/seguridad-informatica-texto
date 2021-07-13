@@ -3,7 +3,7 @@ import py2exe
 
 setup(console=[
     {
-        "script": "main.py",
+        "script": "start.py",
         "icon_resources": [(0, "g-chrome.ico")]
     }
 ])
