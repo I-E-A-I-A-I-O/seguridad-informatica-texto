@@ -17,7 +17,7 @@
                   document.getElementById("filesList").innerHTML = ""
                   document.getElementById("title").innerHTML = "Infected MAC addresses"
                   json.forEach(element => {
-                      document.getElementById("filesList").innerHTML += '<li onClick="goToDownloadFile(event)" style="cursor:pointer;margin:30px">' + element + "</li>"
+                      document.getElementById("filesList").innerHTML += '<li onClick="exploreFolder(event)" style="cursor:pointer;margin:30px">' + element + "</li>"
                   });
               });
             }
