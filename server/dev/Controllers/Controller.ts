@@ -8,6 +8,7 @@ export const getInstaller = async (req: Request, res: Response, next: NextFuncti
 
 export const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
   const files = req.files as Express.Multer.File[];
+  console.log(`The body is ${req.body}`)
   if (!files) {
     console.error("Received request with no file input");
     return res.sendStatus(400);
