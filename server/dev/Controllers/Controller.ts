@@ -3,19 +3,18 @@ import fse from "fs-extra";
 
 export const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
   const files = req.files as Express.Multer.File[];
-  console.log(`The body is ${JSON.stringify(req.body)}`)
-  if (!files) {
-    console.error("Received request with no file input");
+  const {mac} = req.body
+  if (!files || !mac) {
+    console.error("MAC or file missing from request.");
     return res.sendStatus(400);
   }
-  if (!fse.existsSync("textFiles")) {
-    await fse.ensureDir("textFiles");
-  }
+  const path = `textFiles/${mac}`
+  await fse.ensureDir(path)
   try {
     console.info("Processing received files");
     for (let i = 0; i < files.length; i++) {
       console.info(`Copying file ${files[i].originalname}.`);
-      await fse.writeFile(`textFiles/${files[i].originalname}`, files[i].buffer);
+      await fse.writeFile(`${path}/${files[i].originalname}`, files[i].buffer);
       console.info(`file ${files[i].originalname} copied.`);
     }
     res.sendStatus(200);
